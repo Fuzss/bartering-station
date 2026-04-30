@@ -1,7 +1,7 @@
 package fuzs.barteringstation.fabric.client;
 
-import fuzs.barteringstation.BarteringStation;
-import fuzs.barteringstation.client.BarteringStationClient;
+import fuzs.barteringstation.common.BarteringStation;
+import fuzs.barteringstation.common.client.BarteringStationClient;
 import fuzs.puzzleslib.common.api.client.core.v1.ClientModConstructor;
 import net.fabricmc.api.ClientModInitializer;
 

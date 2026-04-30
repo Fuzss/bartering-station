@@ -1,6 +1,6 @@
 package fuzs.barteringstation.fabric;
 
-import fuzs.barteringstation.BarteringStation;
+import fuzs.barteringstation.common.BarteringStation;
 import fuzs.puzzleslib.common.api.core.v1.ModConstructor;
 import net.fabricmc.api.ModInitializer;
 

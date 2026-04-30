@@ -1,10 +1,10 @@
 package fuzs.barteringstation.neoforge;
 
-import fuzs.barteringstation.BarteringStation;
-import fuzs.barteringstation.data.ModBlockLootProvider;
-import fuzs.barteringstation.data.ModBlockTagProvider;
-import fuzs.barteringstation.data.ModRecipeProvider;
-import fuzs.barteringstation.init.ModRegistry;
+import fuzs.barteringstation.common.BarteringStation;
+import fuzs.barteringstation.common.data.ModBlockLootProvider;
+import fuzs.barteringstation.common.data.ModBlockTagProvider;
+import fuzs.barteringstation.common.data.ModRecipeProvider;
+import fuzs.barteringstation.common.init.ModRegistry;
 import fuzs.puzzleslib.common.api.core.v1.ModConstructor;
 import fuzs.puzzleslib.neoforge.api.data.v2.core.DataProviderHelper;
 import fuzs.puzzleslib.neoforge.api.init.v3.capability.NeoForgeCapabilityHelper;
