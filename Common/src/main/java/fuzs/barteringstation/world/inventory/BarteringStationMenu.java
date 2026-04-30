@@ -5,8 +5,8 @@ import fuzs.barteringstation.client.gui.screens.inventory.BarteringStationScreen
 import fuzs.barteringstation.config.ServerConfig;
 import fuzs.barteringstation.init.ModRegistry;
 import fuzs.barteringstation.world.level.block.entity.BarteringStationBlockEntity;
-import fuzs.puzzleslib.api.container.v1.QuickMoveRuleSet;
-import fuzs.puzzleslib.api.util.v1.EntityHelper;
+import fuzs.puzzleslib.common.api.container.v1.QuickMoveRuleSet;
+import fuzs.puzzleslib.common.api.util.v1.EntityHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;

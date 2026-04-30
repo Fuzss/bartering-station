@@ -3,7 +3,7 @@ package fuzs.barteringstation.world.level.block;
 import com.mojang.serialization.MapCodec;
 import fuzs.barteringstation.init.ModRegistry;
 import fuzs.barteringstation.world.level.block.entity.BarteringStationBlockEntity;
-import fuzs.puzzleslib.api.block.v1.entity.TickingEntityBlock;
+import fuzs.puzzleslib.common.api.block.v1.entity.TickingEntityBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

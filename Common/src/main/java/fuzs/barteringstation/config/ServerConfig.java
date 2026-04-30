@@ -1,7 +1,7 @@
 package fuzs.barteringstation.config;
 
-import fuzs.puzzleslib.api.config.v3.Config;
-import fuzs.puzzleslib.api.config.v3.ConfigCore;
+import fuzs.puzzleslib.common.api.config.v3.Config;
+import fuzs.puzzleslib.common.api.config.v3.ConfigCore;
 
 public class ServerConfig implements ConfigCore {
     @Config(description = "Range on xz plane bartering station should search for available piglins.")

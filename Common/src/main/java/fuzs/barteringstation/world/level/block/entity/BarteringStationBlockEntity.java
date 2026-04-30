@@ -4,11 +4,11 @@ import fuzs.barteringstation.BarteringStation;
 import fuzs.barteringstation.config.ServerConfig;
 import fuzs.barteringstation.init.ModRegistry;
 import fuzs.barteringstation.world.inventory.BarteringStationMenu;
-import fuzs.puzzleslib.api.block.v1.entity.TickingBlockEntity;
-import fuzs.puzzleslib.api.container.v1.ContainerMenuHelper;
-import fuzs.puzzleslib.api.container.v1.ContainerSerializationHelper;
-import fuzs.puzzleslib.api.container.v1.ListBackedContainer;
-import fuzs.puzzleslib.api.util.v1.EntityHelper;
+import fuzs.puzzleslib.common.api.block.v1.entity.TickingBlockEntity;
+import fuzs.puzzleslib.common.api.container.v1.ContainerMenuHelper;
+import fuzs.puzzleslib.common.api.container.v1.ContainerSerializationHelper;
+import fuzs.puzzleslib.common.api.container.v1.ListBackedContainer;
+import fuzs.puzzleslib.common.api.util.v1.EntityHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -134,12 +134,12 @@ public class BarteringStationBlockEntity extends BaseContainerBlockEntity implem
     }
 
     @Override
-    public void clientTick() {
-        this.animationController.tick(this.getLevel());
+    public void clientTick(Level level, BlockPos blockPos, BlockState blockState) {
+        this.animationController.tick(level);
     }
 
     @Override
-    public void serverTick() {
+    public void serverTick(ServerLevel serverLevel, BlockPos blockPos, BlockState blockState) {
         if (this.barterDelay > 0) {
             this.barterDelay--;
         }
@@ -148,11 +148,11 @@ public class BarteringStationBlockEntity extends BaseContainerBlockEntity implem
         boolean isTimeToBarter = this.barterDelay % totalBarterDelay == 0;
         // do this more often then handing out gold to update the piglin count in the client screen
         if (isTimeToBarter || this.barterDelay % (totalBarterDelay / 4) == 0) {
-            List<Piglin> piglins = findNearbyPiglins(this.getLevel(), this.getBlockPos());
+            List<Piglin> piglins = findNearbyPiglins(serverLevel, blockPos);
             this.nearbyPiglins = piglins.size();
             if (isTimeToBarter) {
                 this.barterDelay = totalBarterDelay * 2;
-                this.barterWithPiglins(this.getBlockPos(), piglins);
+                this.barterWithPiglins(serverLevel, blockPos, piglins);
             }
         }
     }
@@ -167,16 +167,19 @@ public class BarteringStationBlockEntity extends BaseContainerBlockEntity implem
                 AbstractPiglin::isAdult);
     }
 
-    private void barterWithPiglins(BlockPos pos, List<Piglin> piglins) {
+    private void barterWithPiglins(ServerLevel serverLevel, BlockPos blockPos, List<Piglin> piglins) {
         // stop giving out gold when not slots are available
-        if (piglins.isEmpty() || this.findFreeResponseSlot().isEmpty()) return;
+        if (piglins.isEmpty() || this.findFreeResponseSlot().isEmpty()) {
+            return;
+        }
+
         int currentPiglin = 0;
         for (int i = 0; i < CURRENCY_SLOTS; i++) {
-            ItemStack stack = this.getItem(i);
-            if (!stack.isEmpty()) {
+            ItemStack itemStack = this.getItem(i);
+            if (!itemStack.isEmpty()) {
                 while (currentPiglin < piglins.size()) {
-                    if (mobInteract((ServerLevel) this.getLevel(), piglins.get(currentPiglin++), stack, pos)) {
-                        // only the item stack is changed, nothing in the container itself is updated, therefore manually mark block entity as changed
+                    if (mobInteract(serverLevel, piglins.get(currentPiglin++), itemStack, blockPos)) {
+                        // only the item stack is changed, nothing in the container itself is updated, therefore, manually mark block entity as changed
                         this.setChanged();
                         this.barterDelay = BarteringStation.CONFIG.get(ServerConfig.class).barterDelay;
                         break;

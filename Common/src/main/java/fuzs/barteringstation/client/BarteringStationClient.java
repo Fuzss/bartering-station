@@ -3,9 +3,9 @@ package fuzs.barteringstation.client;
 import fuzs.barteringstation.client.gui.screens.inventory.BarteringStationScreen;
 import fuzs.barteringstation.client.renderer.blockentity.BarteringStationRenderer;
 import fuzs.barteringstation.init.ModRegistry;
-import fuzs.puzzleslib.api.client.core.v1.ClientModConstructor;
-import fuzs.puzzleslib.api.client.core.v1.context.BlockEntityRenderersContext;
-import fuzs.puzzleslib.api.client.core.v1.context.MenuScreensContext;
+import fuzs.puzzleslib.common.api.client.core.v1.ClientModConstructor;
+import fuzs.puzzleslib.common.api.client.core.v1.context.BlockEntityRenderersContext;
+import fuzs.puzzleslib.common.api.client.core.v1.context.MenuScreensContext;
 
 public class BarteringStationClient implements ClientModConstructor {
 

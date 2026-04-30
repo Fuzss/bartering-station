@@ -6,7 +6,7 @@ import fuzs.barteringstation.config.ClientConfig;
 import fuzs.barteringstation.world.inventory.BarteringStationMenu;
 import fuzs.barteringstation.world.level.block.entity.BarteringStationBlockEntity;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -36,7 +36,6 @@ public class BarteringStationScreen extends AbstractContainerScreen<BarteringSta
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
         this.addRenderableWidget(new ItemStackDisplayButton(this.leftPos + 53,
                 this.topPos + 20,
-                this.font,
                 new ItemStack(Items.PIGLIN_HEAD),
                 (Button button) -> {
                     if (this.menu.clickMenuButton(this.minecraft.player, 0)) {
@@ -57,25 +56,24 @@ public class BarteringStationScreen extends AbstractContainerScreen<BarteringSta
             }
 
             @Override
-            protected void renderContents(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+            protected void extractContents(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
                 this.active = BarteringStationScreen.this.menu.getNearbyPiglins() > 0;
-                super.renderContents(guiGraphics, mouseX, mouseY, partialTick);
+                super.extractContents(guiGraphics, mouseX, mouseY, partialTick);
             }
         }).setTooltip(Tooltip.create(EntityType.PIGLIN.getDescription()));
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
+    public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.extractRenderState(guiGraphics, mouseX, mouseY, partialTick);
         if (BarteringStation.CONFIG.get(ClientConfig.class).cooldownRenderType.overlay()) {
             this.renderCooldownOverlays(guiGraphics);
         }
-
-        this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+    public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.extractBackground(guiGraphics, mouseX, mouseY, partialTick);
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED,
                 BARTERING_STATION_LOCATION,
                 this.leftPos,
@@ -91,7 +89,7 @@ public class BarteringStationScreen extends AbstractContainerScreen<BarteringSta
         }
     }
 
-    private void renderCooldownArrows(GuiGraphics guiGraphics) {
+    private void renderCooldownArrows(GuiGraphicsExtractor guiGraphics) {
         int topArrowProgress = this.menu.getTopArrowProgress();
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED,
                 BARTERING_STATION_LOCATION,
@@ -116,7 +114,7 @@ public class BarteringStationScreen extends AbstractContainerScreen<BarteringSta
                 256);
     }
 
-    private void renderCooldownOverlays(GuiGraphics guiGraphics) {
+    private void renderCooldownOverlays(GuiGraphicsExtractor guiGraphics) {
         float cooldownProgress = this.menu.getCooldownProgress();
         if (cooldownProgress > 0.0F && cooldownProgress < 1.0F) {
             guiGraphics.pose().pushMatrix();
