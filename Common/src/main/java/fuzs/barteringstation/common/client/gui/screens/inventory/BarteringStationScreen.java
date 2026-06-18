@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -63,7 +63,7 @@ public class BarteringStationScreen extends AbstractContainerScreen<BarteringSta
                 this.active = BarteringStationScreen.this.menu.getNearbyPiglins() > 0;
                 super.extractContents(guiGraphics, mouseX, mouseY, partialTick);
             }
-        }).setTooltip(Tooltip.create(EntityType.PIGLIN.getDescription()));
+        }).setTooltip(Tooltip.create(EntityTypes.PIGLIN.getDescription()));
     }
 
     @Override

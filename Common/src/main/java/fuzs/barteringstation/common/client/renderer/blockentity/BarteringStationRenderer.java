@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import fuzs.barteringstation.common.client.renderer.blockentity.state.BarteringStationRenderState;
 import fuzs.barteringstation.common.world.level.block.entity.BarteringStationBlockEntity;
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -52,7 +51,7 @@ public class BarteringStationRenderer implements BlockEntityRenderer<BarteringSt
                 (int) blockEntity.getBlockPos().asLong());
         // light is normally always 0 since it checks inside the crafting table block which is solid, but contents are rendered in the block above
         renderState.itemLightCoords = blockEntity.getLevel() != null ?
-                LevelRenderer.getLightCoords(blockEntity.getLevel(), blockEntity.getBlockPos().above()) :
+                LightCoordsUtil.getLightCoords(blockEntity.getLevel(), blockEntity.getBlockPos().above()) :
                 LightCoordsUtil.FULL_BRIGHT;
         blockEntity.getAnimationController().extractRenderState(renderState.animationController, partialTick);
     }

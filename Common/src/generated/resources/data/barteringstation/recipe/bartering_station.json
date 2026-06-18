@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "#minecraft:planks",
     "@": "minecraft:gold_ingot"
@@ -11,7 +10,6 @@
     "##"
   ],
   "result": {
-    "count": 1,
     "id": "barteringstation:bartering_station"
   }
 }
