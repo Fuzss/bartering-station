@@ -6,11 +6,17 @@
     "26.1.x": "maintained",
     "26.2.x": "primary"
   },
-  "properties": {
-    "distributions.curseforge.id": "666940",
-    "distributions.curseforge.slug": "bartering-station",
-    "distributions.github.slug": "bartering-station",
-    "distributions.modrinth.id": "EOig9U0j",
-    "distributions.modrinth.slug": "bartering-station"
+  "distributions": {
+    "curseforge": {
+      "id": "666940",
+      "slug": "bartering-station"
+    },
+    "github": {
+      "slug": "bartering-station"
+    },
+    "modrinth": {
+      "id": "EOig9U0j",
+      "slug": "bartering-station"
+    }
   }
 }
