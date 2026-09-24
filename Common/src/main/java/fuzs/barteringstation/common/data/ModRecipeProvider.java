@@ -1,23 +1,24 @@
 package fuzs.barteringstation.common.data;
 
 import fuzs.barteringstation.common.init.ModRegistry;
-import fuzs.puzzleslib.common.api.data.v2.AbstractRecipeProvider;
-import fuzs.puzzleslib.common.api.data.v2.core.DataProviderContext;
+import fuzs.puzzleslib.common.api.data.v3.recipes.AbstractRecipeProvider;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 
 public class ModRecipeProvider extends AbstractRecipeProvider {
 
-    public ModRecipeProvider(DataProviderContext context) {
-        super(context);
+    public ModRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput);
     }
 
     @Override
-    public void addRecipes(RecipeOutput recipeOutput) {
-        ShapedRecipeBuilder.shaped(this.items(),
+    public void buildRecipes() {
+        ShapedRecipeBuilder.shaped(this.items,
                         RecipeCategory.DECORATIONS,
                         ModRegistry.BARTERING_STATION_BLOCK.value())
                 .define('#', ItemTags.PLANKS)
@@ -26,6 +27,6 @@ public class ModRecipeProvider extends AbstractRecipeProvider {
                 .pattern("##")
                 .pattern("##")
                 .unlockedBy(getHasName(Items.GOLD_INGOT), this.has(Items.GOLD_INGOT))
-                .save(recipeOutput);
+                .save(this.output);
     }
 }

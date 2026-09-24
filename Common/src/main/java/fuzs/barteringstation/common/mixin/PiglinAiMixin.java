@@ -7,6 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SwingAnimation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,7 +33,7 @@ abstract class PiglinAiMixin {
                         if (!items.isEmpty()) {
                             throwItems(piglin, items);
                         } else {
-                            piglin.swing(InteractionHand.OFF_HAND);
+                            piglin.swing(InteractionHand.OFF_HAND, SwingAnimation.DEFAULT);
                         }
                         callback.cancel();
                     });

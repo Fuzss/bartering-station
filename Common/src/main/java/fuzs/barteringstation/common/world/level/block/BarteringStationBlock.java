@@ -1,6 +1,5 @@
 package fuzs.barteringstation.common.world.level.block;
 
-import com.mojang.serialization.MapCodec;
 import fuzs.barteringstation.common.init.ModRegistry;
 import fuzs.barteringstation.common.world.level.block.entity.BarteringStationBlockEntity;
 import fuzs.puzzleslib.common.api.block.v1.entity.TickingEntityBlock;
@@ -20,15 +19,9 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BarteringStationBlock extends BaseEntityBlock implements TickingEntityBlock<BarteringStationBlockEntity> {
-    public static final MapCodec<BarteringStationBlock> CODEC = simpleCodec(BarteringStationBlock::new);
 
     public BarteringStationBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

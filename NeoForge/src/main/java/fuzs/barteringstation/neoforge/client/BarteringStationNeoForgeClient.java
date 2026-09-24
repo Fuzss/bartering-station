@@ -5,7 +5,7 @@ import fuzs.barteringstation.common.client.BarteringStationClient;
 import fuzs.barteringstation.common.data.client.ModLanguageProvider;
 import fuzs.barteringstation.common.data.client.ModModelProvider;
 import fuzs.puzzleslib.common.api.client.core.v1.ClientModConstructor;
-import fuzs.puzzleslib.neoforge.api.data.v2.core.DataProviderHelper;
+import fuzs.puzzleslib.neoforge.api.data.v3.core.DataProviderBuilder;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.Mod;
 
@@ -14,8 +14,7 @@ public class BarteringStationNeoForgeClient {
 
     public BarteringStationNeoForgeClient() {
         ClientModConstructor.construct(BarteringStation.MOD_ID, BarteringStationClient::new);
-        DataProviderHelper.registerDataProviders(BarteringStation.MOD_ID, ModLanguageProvider::new,
-                ModModelProvider::new
-        );
+        DataProviderBuilder.of(BarteringStation.MOD_ID)
+                .addProvider(ModLanguageProvider::new, ModModelProvider::new);
     }
 }
