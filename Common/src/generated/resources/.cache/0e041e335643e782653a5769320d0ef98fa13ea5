@@ -1,0 +1,4 @@
+// 26.3	2026-09-24T12:40:48.813585	Registries for reloadable
+c36dbd732bdf77ab258a7f7e26725a074fb60d5f data/barteringstation/advancement/recipes/decorations/bartering_station.json
+8cbc067f659a50a3de65dee6139d46b6bc52f193 data/barteringstation/loot_table/blocks/bartering_station.json
+84dcad1f9289dd8718190462c27332b31f36ea98 data/barteringstation/recipe/bartering_station.json

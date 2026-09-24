@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "barteringstation:bartering_station"
+        "recipes": "barteringstation:bartering_station"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
